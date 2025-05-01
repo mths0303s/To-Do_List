@@ -1,0 +1,29 @@
+<ul class="box">
+    {% for item in todo_items %}
+        <li class="level mb-2">
+            <div class="level-left">
+                <span class="{% if item.done %}has-text-grey-light has-text-weight-light is-italic{% endif %}">
+                    {% if item.done %}
+                        <del>{{ item.text }}</del>
+                    {% else %}
+                        {{ item.text }}
+                    {% endif %}
+                </span>
+            </div>
+            <div class="level-right">
+                <!-- Botão concluir -->
+                <form hx-post="/done/{{ loop.index0 }}" hx-target="#todo-list" hx-swap="innerHTML" class="mr-2">
+                    <button class="button is-success is-light is-small" type="submit">
+                        {% if item.done %}Desfazer{% else %}Concluir{% endif %}
+                    </button>
+                </form>
+                <!-- Botão de deletar com HTMX POST -->
+                <form hx-post="/delete/{{ loop.index0 }}" hx-target="#todo-list" hx-swap="innerHTML" class="mr-2">
+                    <button class="button is-danger is-small" type="submit">Excluir</button>
+                </form>
+            </div>
+        </li>
+    {% else %}
+        <p class="has-text-grey">Nenhuma tarefa adicionada.</p>
+    {% endfor %}
+</ul>
