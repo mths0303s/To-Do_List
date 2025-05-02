@@ -32,7 +32,7 @@ async def add_item(request: Request, item: str = Form(...)):
     })
 
 
-@app.post("/delete/{index}", response_class=HTMLResponse)
+@app.delete("/delete/{index}", response_class=HTMLResponse)
 async def delete_item(request: Request, index: int):
     # Rota para excluir tarefa — também chamada via HTMX
     if 0 <= index < len(todo_items):
@@ -43,7 +43,7 @@ async def delete_item(request: Request, index: int):
     })
 
 
-@app.post("/done/{index}", response_class=HTMLResponse)
+@app.patch("/done/{index}", response_class=HTMLResponse)
 async def mark_done(request: Request, index: int):
     if 0 <= index < len(todo_items):
         todo_items[index]["done"] = not todo_items[index]["done"]

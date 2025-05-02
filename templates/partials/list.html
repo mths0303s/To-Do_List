@@ -12,13 +12,13 @@
             </div>
             <div class="level-right">
                 <!-- Botão concluir -->
-                <form hx-post="/done/{{ loop.index0 }}" hx-target="#todo-list" hx-swap="innerHTML" class="mr-2">
+                <form hx-patch="/done/{{ loop.index0 }}" hx-target="#todo-list" hx-swap="innerHTML" class="mr-2">
                     <button class="button is-success is-light is-small" type="submit">
                         {% if item.done %}Desfazer{% else %}Concluir{% endif %}
                     </button>
                 </form>
                 <!-- Botão de deletar com HTMX POST -->
-                <form hx-post="/delete/{{ loop.index0 }}" hx-target="#todo-list" hx-swap="innerHTML" class="mr-2">
+                <form hx-delete="/delete/{{ loop.index0 }}" hx-target="#todo-list" hx-swap="innerHTML" class="mr-2">
                     <button class="button is-danger is-small" type="submit">Excluir</button>
                 </form>
             </div>
