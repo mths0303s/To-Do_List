@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1 class="title">To-do List</h1>
+    <h1 class="title has-text-centered">To-do List</h1>
 
     <!-- Formulário com HTMX para adicionar tarefas -->
     <form hx-post="/add" hx-target="#todo-list" hx-swap="innerHTML" hx-on="htmx:afterRequest: this.reset()" class="field has-addons mb-5">
